@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Share+Tech&display=swap" rel="stylesheet">
+        <title>Aurion</title>
+        <link rel="icon" type="image/x-icon" href="images/Aurion.png">
+        <meta charset="utf-8">
+
+        <meta name="description" content="Car Dealership">
+        <meta name="keywords" content="Car, Dealership, Bugatti, Pagani">
+        <meta name="author" content="Malik Morrow">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <meta http-equiv="refresh" content="200">
+        <link rel="stylesheet" href="css/externalstyling.css">
+        <style>
+            *{
+                font-family: 'Red Hat Display';
+                margin: 0;
+                box-sizing: border-box;
+            }
+            html{
+                scroll-behavior: smooth;
+            }
+            .page1{
+                position: absolute;
+                height: 100vh;
+                width: 100%;
+                background-image: url(images/paganihuarya.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position-y: -180PX;
+            }
+            .page2{
+                position: absolute;
+                top: 100%;
+                height: 100vh;
+                width: 100%;
+                background-color: white;
+                background-image: url(images/jesko.jpg);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position-y: 200px;
+            }
+            .overlay{
+                position: fixed;
+                top:0;
+                left:0;
+                height: 200%;
+                z-index: 2;
+                width: 100%;
+                background-color: #00000000;
+                transition: 0.2s ease;
+            }
+            .overlay.active{
+                background-color: #00000090;
+                transition: 0.2s ease;
+            }
+            .off-screen-menu{
+                background-color: #121212;
+                border-left: solid 3px #e1e1e1;
+                height: 100vh;
+                width: 26%;
+                position: fixed;
+                z-index: 3;
+                top: 0;
+                right: -26%;
+                color: #e1e1e1;
+                overflow: hidden;
+                display: flex;
+                transition: .2s ease;
+            }
+            .off-screen-menu.active{
+                right: 0;
+            }
+            nav{
+                display: flex;
+                background-color: #00000000;
+
+            }
+            .ham-menu{
+                margin: 0px;
+                width: 50px;
+                height: 50px;
+                background-color: #00000090;
+                cursor:pointer;
+                z-index: 4;
+                margin-left: auto;
+                position: relative;
+                position: fixed;
+                right:0;
+                top: 0;
+            }
+            .ham-menu span{
+                height: 3px;
+                width: 60%;
+                background-color: #e1e1e1;
+                border-radius: 100px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: .2s ease;
+            }
+            .ham-menu span:nth-child(1){
+                top: 25%;
+            }
+            .ham-menu span:nth-child(2){
+                opacity: 1;
+                transition: 0.1s
+            }
+            .ham-menu span:nth-child(3){
+                top: 75%;
+            }
+
+            .ham-menu.active span:nth-child(1){
+                top: 50%;
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+            .ham-menu.active span:nth-child(2){
+                opacity: 0;
+                transition: 0.1s;
+            }
+            .ham-menu.active span:nth-child(3){
+                top: 50%;
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+            .relative{
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+            h1{
+                position: absolute;
+                top: 17%;
+                left: 50%;
+                right: 50%;
+                color: #e1e1e1;
+                opacity: 0.87;
+                font-size: 160px;
+                font-family: 'Share Tech';
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+            .gradient{
+                position: absolute;
+                top: 85%;
+                background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.613),black, rgba(0, 0, 0, 0.613), rgba(255, 255, 255, 0));
+                height: 30%;
+                width: 100%;
+                z-index: 2;
+            }
+            h2{
+                position: absolute;
+                top: 50%;
+                bottom: 50%;
+                left: 50%;
+                right: 50%;
+                height: 200px;
+                width: 300px;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+                flex-direction:column ;
+            }
+
+
+            .relative2{
+                position: relative;
+                height: 100%;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+            .centered-text{
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+            .centered-text p{
+                position: relative;
+                top: -17vh;
+                font-size: 36px;
+                color: #000000ce
+            }
+            p span{
+                font-size: 26px;
+            }
+            .header{
+                width: 100%;
+                display: flex;
+                height: 10%;
+            }
+            .logo-container{
+                width: 100%;
+                height: 100px;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+            .logo{
+                height: 75px;
+
+            }
+            aside{
+                height: 80%;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+
+            }
+            a{
+                position: relative;
+                text-align: center;
+                width: 100%;
+                margin: 15px;
+                text-decoration: none;
+                color: #e1e1e18f;
+                font-size: 26px;
+                transition: .2s;
+            }
+            .a{
+                position: relative;
+                width: 80%;
+                height: 50px;
+                margin: 12.5px;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+            .a::after{
+                position: absolute;
+                content: "";
+                right: 0;
+                height: 75%;
+                width: 2px;
+                background-color: #e1e1e100;
+                transition: .2s;
+            }
+            .a::before{
+                position: absolute;
+                left: 0;
+                content: "";
+                height: 75%;
+                width: 2px;
+                background-color: #e1e1e100;
+                transition: .2s;
+            }
+            .a:hover::before,
+            .a:hover::after {
+                background-color: #e1e1e1;
+                transition: .2s;
+            }
+
+            .a:hover a {
+                color: #e1e1e1;
+                transition: .2s;
+                font-weight: 500;
+            }
+
+            .footer{
+                height: 10%;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+            }
+            .footer a{
+                height: 100%;
+                justify-content: space-between;
+                margin: auto;
+            }
+            .sm{
+                height: 60%;
+                justify-content: space-between;
+                margin: auto;
+            }
+            ::-webkit-scrollbar{
+                display: none;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="page1">
+        <div class="overlay"></div>
+        <div class="off-screen-menu">
+            <div class="relative">
+                <div class="header">
+                    <div class="logo-container">
+                        <img src="images/Aurion.png" class="logo">
+                    </div>
+                    <div class="blank-space">
+                    </div>
+                </div>
+                <aside>
+                    <div class="a"><a href="#">About Us</a></div>
+                    <div class="a"><a href="#">Events</a></div>
+                    <div class="a"><a href="#">Cars</a></div>
+                    <div class="a"><a href="#">Contact Us</a></div>
+                </aside>
+                <div class="footer">
+                    <a href="#"><img src="images/tticon.png" class="sm"></a>
+                    <a href="#"><img src="images/fbicon.png" class="sm"></a>
+                    <a href="#"><img src="images/xicon.png" class="sm"></a>
+                    <a href="#"><img src="images/yticon.png" class="sm"></a>
+                    
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="ham-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+            </div>
+        </nav>
+        <h1>AURION</h1>
+        <div class="gradient">
+
+        </div>
+        <div class="page2">
+            <div class="relative2">
+                <div class="centered-text">
+                <p>
+                    5-Star Exotic Car Dealership in South Florida
+                </p>
+                <p><span>Est. 2001</span></p>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </body>
+        <script>
+            const hamMenu = document.querySelector('.ham-menu');
+            const offScreenMenu = document.querySelector('.off-screen-menu');
+            const overlayMenuToggle = document.querySelector('.overlay');
+            const body = document.querySelector('body');
+            hamMenu.addEventListener('click', () => {
+	            const isActive = hamMenu.classList.toggle('active');
+	            offScreenMenu.classList.toggle('active');
+                overlayMenuToggle.classList.toggle('active');
+            });
+            document.addEventListener('keydown', function(event){
+                if (event.key === 'Escape') {
+                hamMenu.classList.remove('active');
+	            offScreenMenu.classList.remove('active');
+                overlayMenuToggle.classList.remove('active');
+                }
+            })
+
+        </script>
+    <footer>
+
+    </footer>
+    </html>
